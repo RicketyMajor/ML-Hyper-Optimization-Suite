@@ -1,0 +1,61 @@
+# configs/clustering_params.yaml
+
+kmeans:
+  # Config 1: El ideal teórico (7 clases) con inicialización aleatoria básica
+  - n_clusters: 7
+    init: 'random'
+    n_init: 10
+    max_iter: 300
+  # Config 2: Sub-segmentación
+  - n_clusters: 5
+    init: 'random'
+    n_init: 10
+    max_iter: 300
+  # Config 3: Sobre-segmentación
+  - n_clusters: 9
+    init: 'random'
+    n_init: 10
+    max_iter: 300
+  # Config 4: Más intentos de inicialización para buscar un mejor mínimo global
+  - n_clusters: 7
+    init: 'random'
+    n_init: 50
+    max_iter: 500
+
+kmeans_plusplus:
+  # Config 1: El ideal teórico con inicialización inteligente
+  - n_clusters: 7
+    init: 'k-means++'
+    n_init: 10
+    max_iter: 300
+  # Config 2: Sub-segmentación
+  - n_clusters: 5
+    init: 'k-means++'
+    n_init: 10
+    max_iter: 300
+  # Config 3: Sobre-segmentación
+  - n_clusters: 9
+    init: 'k-means++'
+    n_init: 10
+    max_iter: 300
+  # Config 4: Solo 1 intento para ver si la inicialización ++ es tan buena por sí sola
+  - n_clusters: 7
+    init: 'k-means++'
+    n_init: 1
+    max_iter: 300
+
+meanshift:
+  # MeanShift no usa n_clusters, usa bandwidth (radio de búsqueda de densidad).
+  # Estimaremos algunos bandwidths en el código, pero aquí variamos los parámetros de convergencia y binning.
+  # Config 1: Estándar
+  - bin_seeding: False
+    cluster_all: True
+  # Config 2: Bin seeding True (acelera el algoritmo discretizando el espacio)
+  - bin_seeding: True
+    cluster_all: True
+  # Config 3: Cluster_all False (deja puntos atípicos huérfanos, representados como -1)
+  - bin_seeding: False
+    cluster_all: False
+  # Config 4: Bin seeding True y Cluster_all False
+  - bin_seeding: True
+    cluster_all: False
