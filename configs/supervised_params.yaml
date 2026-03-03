@@ -1,0 +1,46 @@
+# configs/supervised_params.yaml
+
+# Configuración global
+training:
+  max_epochs: 25
+  prune_every_n_epochs: 5
+
+# Configuraciones para Regresión Logística (loss = 'log_loss')
+logistic_regression:
+  - name: "LR_Agresivo"
+    alpha: 0.0001
+    learning_rate: 'constant'
+    eta0: 0.05
+    batch_size: 64
+
+  - name: "LR_Adaptativo"
+    alpha: 0.01
+    learning_rate: 'adaptive'
+    eta0: 0.1
+    batch_size: 128
+
+  - name: "LR_Optimo_Lento"
+    alpha: 0.001
+    learning_rate: 'optimal'
+    eta0: 0.0  # optimal ignora eta0
+    batch_size: 256
+
+# Configuraciones para Support Vector Machine (loss = 'hinge')
+svm:
+  - name: "SVM_Agresivo"
+    alpha: 0.0001
+    learning_rate: 'constant'
+    eta0: 0.01
+    batch_size: 64
+
+  - name: "SVM_Adaptativo"
+    alpha: 0.01
+    learning_rate: 'adaptive'
+    eta0: 0.1
+    batch_size: 128
+
+  - name: "SVM_Optimo"
+    alpha: 0.001
+    learning_rate: 'optimal'
+    eta0: 0.0
+    batch_size: 256
